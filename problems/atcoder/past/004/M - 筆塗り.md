@@ -63,4 +63,3 @@ EulerTourでは、LCAの概念を取り入れてもなお操作を区間で表�
 # Similar / Links
 
 # Afterthought
-復習で気づいた改善。
