@@ -15,15 +15,14 @@ time_spent:
 
 # TL;DR
 
-# Statement (要約)
+# Statement
 
 
 # Key Idea
 * 
 
 # Approach
-1. 
-2. 
+
 
 # Complexity
 Time: $O()$
