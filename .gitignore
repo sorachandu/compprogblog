@@ -1,0 +1,12 @@
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/obsidian-git/data.json
+.obsidian/cache/
+
+# Python / build
+__pycache__/
+site/
+
+# OS
+Thumbs.db
