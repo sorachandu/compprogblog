@@ -47,7 +47,6 @@ tR += `\ntries:`;
 tR += `\ntime_spent:`;
 tR += `\n---\n\n`;
 
-tR += `# TL;DR\n\n`;
 tR += `# Statement\n\n`;
 tR += `# Key Idea\n\n`;
 tR += `# Approach\n\n`;
