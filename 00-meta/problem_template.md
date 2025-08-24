@@ -20,7 +20,7 @@ if(m){
 
   oj    = m[1];
 
-  genre = m[2].toUpper;
+  genre = m[2].toUpperCase();
 
   cid   = m[3];
 
@@ -82,15 +82,15 @@ tR += `\n---\n\n`;
 
   
 
-tR += `# TL;DR\n(核心一文)\n\n`;
+tR += `# TL;DR\n\n`;
 
-tR += `# Statement (要約)\n\n`;
+tR += `# Statement\n\n`;
 
 tR += `# Key Idea\n\n`;
 
 tR += `# Approach\n\n`;
 
-tR += `# Complexity\n\n`;
+tR += `# Complexity\nTime: $O()$\nMemory: $O()$\n\n`;
 
 tR += `# Implementation Notes\n\n`;
 

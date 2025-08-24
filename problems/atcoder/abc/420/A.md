@@ -15,6 +15,8 @@ time_spent: 1 min
 
 # TL;DR
 場合分け
+https://atcoder.jp/contests/abc420/submissions/68734457
+
 # Statement
 X月のY月後は何月か?
 
