@@ -1,11 +1,10 @@
 ---
-title: ABC"{}" {{title}} - Problem Title
+title: ABC X - Problem Title
 oj: atcoder
 contest: abc000
 problem: x
 url: https://atcoder.jp/contests/abc000/tasks/abc000_x
-date:
-  "{ date:YYYY-MM-DD }":
+date: 2025-08-25
 tags: []
 rating:
 status: solved
