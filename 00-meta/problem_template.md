@@ -1,103 +1,60 @@
 <%*
-
 /*
-
-期待パス:
-
-problems/{oj}/{contest_genre}/{contest_id}/{problem_id}.md
-
-例: problems/atcoder/abc/420/C.md
-
+Path pattern:
+problems/{contest}-{problem}.md
+例:
+  problems/ABC420-C.md
+  problems/PAST004-M.md
 */
-
-const rel = tp.file.path(true);          // 例: problems/atcoder/abc/420/C.md
-
-const m = rel.match(/^problems\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\.md$/);
-
-let oj='', genre='', cid='', pid='';
-
+const rel = tp.file.path(true);
+const m = rel.match(/^problems\/([^\/]+)\.md$/);
+let contest='', problem='', oj='';
 if(m){
+  const fname = m[1];
+  const dash = fname.lastIndexOf('-');
+  if(dash !== -1){
+    contest = fname.slice(0,dash);
+    problem = fname.slice(dash+1);
+  } else {
+    contest = fname;
+    problem = '';
+  }
+}
+// OJ 推定 (必要なら後で手で修正)
+if(/^(ABC|ARC|AGC|AHC|PAST)\d+$/i.test(contest)) oj = 'atcoder';
 
-  oj    = m[1];
-
-  genre = m[2].toUpperCase();
-
-  cid   = m[3];
-
-  pid   = m[4];
-
-} else {
-
-  // 想定外 → 最低限タイトルから
-
-  pid = tp.file.title;
-
+const contestSlug = contest.toLowerCase();
+const problemSlug = problem.toLowerCase();
+let url='';
+if(oj === 'atcoder' && contest && problem){
+  url = `https://atcoder.jp/contests/${contestSlug}/tasks/${contestSlug}_${problemSlug}`;
 }
 
-const contest = genre + cid;
-
-const url = (oj === 'atcoder' && contest && pid)
-
-  ? `https://atcoder.jp/contests/${contest}/tasks/${contest}_${pid.toLowerCase()}`
-
-  : '';
-
-  
-
 const today = tp.date.now("YYYY-MM-DD");
-
-  
-
 tR += `---\n`;
-
-tR += `title: "${contest} ${pid} - "`; // ← 問題名を - の後ろに手入力
-
+tR += `title: "${contest} ${problem} - "`;
 tR += `\noj: ${oj}`;
-
 tR += `\ncontest: ${contest}`;
-
-tR += `\ncontest_genre: ${genre}`;
-
-tR += `\ncontest_id: ${cid}`;
-
-tR += `\nproblem: ${pid}`;
-
+tR += `\nproblem: ${problem}`;
 tR += `\nurl: ${url}`;
-
+tR += `\nsubmission_url:`;
 tR += `\ndate: ${today}`;
-
 tR += `\ntags: []`;
-
 tR += `\nrating:`;
-
 tR += `\nstatus: solved`;
-
 tR += `\nrevisit:`;
-
 tR += `\ntries:`;
-
 tR += `\ntime_spent:`;
-
 tR += `\n---\n\n`;
 
-  
-
 tR += `# TL;DR\n\n`;
-
 tR += `# Statement\n\n`;
-
 tR += `# Key Idea\n\n`;
-
 tR += `# Approach\n\n`;
-
 tR += `# Complexity\nTime: $O()$\nMemory: $O()$\n\n`;
-
 tR += `# Implementation Notes\n\n`;
-
 tR += `# Pitfalls\n\n`;
-
 tR += `# Similar / Links\n\n`;
-
 tR += `# Afterthought\n`;
 
 %>

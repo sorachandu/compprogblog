@@ -2,8 +2,6 @@
 title: ABC420 B - Most Minority
 oj: atcoder
 contest: ABC420
-contest_genre: ABC
-contest_id: 420
 problem: B
 url: https://atcoder.jp/contests/ABC420/tasks/ABC420_b
 date: 2025-08-24
