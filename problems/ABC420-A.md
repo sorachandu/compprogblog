@@ -6,7 +6,7 @@ problem: A
 url: https://atcoder.jp/contests/abc420/tasks/abc420_a
 date: 2025-08-24
 tags: []
-rating: "10"
+difficulty: "10"
 status: solved
 revisit:
 tries:

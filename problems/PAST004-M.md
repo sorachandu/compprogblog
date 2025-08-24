@@ -10,7 +10,7 @@ tags:
   - LCA
   - Tree
   - Data-Structure
-rating:
+difficulty: (1400)
 status: solved
 revisit:
 tries:

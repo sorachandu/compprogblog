@@ -7,7 +7,7 @@ url: https://atcoder.jp/contests/ABC420/tasks/ABC420_c
 date: 2025-08-24
 tags:
   - 差分管理
-rating:
+difficulty: "169"
 status: solved
 revisit:
 tries:

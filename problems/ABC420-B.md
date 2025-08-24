@@ -7,7 +7,7 @@ url: https://atcoder.jp/contests/ABC420/tasks/ABC420_b
 date: 2025-08-24
 tags:
   - Brute-force
-rating: "20"
+difficulty: "74"
 status: solved
 revisit:
 tries:
