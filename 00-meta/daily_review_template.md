@@ -1,7 +1,10 @@
 ---
 title: Daily Review {{date:YYYY-MM-DD}}
-date: {{date:YYYY-MM-DD}}
+date:
+  "{ date:YYYY-MM-DD }":
 ---
+## やったこと、感想
+
 
 ## 今日解いた
 - [ ] 
