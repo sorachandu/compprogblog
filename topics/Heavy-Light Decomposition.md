@@ -61,8 +61,8 @@ if(type==1){
 		b=HLD.parent(br);
 	}
 	if(HLD.toSeq(a)>HLD.toSeq(b)) swap(a,b);
-		val=max(val,seg.prod(HLD.toSeq(a),HLD.toSeq(b)+1));
-		ans.emplace_back(val);
+	val=max(val,seg.prod(HLD.toSeq(a),HLD.toSeq(b)+1));
+	ans.emplace_back(val);
 	}
 }
 for(int i=0;i<ssize(ans);i++) cout<<ans[i]<<" \n"[i+1==ssize(ans)];
