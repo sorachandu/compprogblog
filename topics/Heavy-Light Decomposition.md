@@ -19,12 +19,12 @@ while(Q--){
 		cin>>u>>v;
 		long val{};
 		while(!HLD.same(u,v)){
-			if(HLD.toSeq(u)>HLD.toSeq(v)) swap(u,v);
+			HLD.normalizePair(u,v);
 			const int vr=HLD.heavyR(v);
 			val+=fw.sum(HLD.toSeq(vr),HLD.toSeq(v)+1);
 			v=HLD.parent(vr);
 		}
-		if(HLD.toSeq(u)>HLD.toSeq(v)) swap(u,v);
+		HLD.normalizePair(u,v);
 		val+=fw.sum(HLD.toSeq(u),HLD.toSeq(v)+1);
 		cout<<val<<"\n";
 	}
@@ -55,12 +55,12 @@ if(type==1){
 	int val=-1<<30;
 	// LCAを求めるときと同様のノリで辿ればs-tパスが得られる
 	while(!HLD.same(a,b)){
-		if(HLD.toSeq(a)>HLD.toSeq(b)) swap(a,b);
+		HLD.normalizePair(a,b);
 		const int br=HLD.heavyR(b);
 		val=max(val,seg.prod(HLD.toSeq(br),HLD.toSeq(b)+1));
 		b=HLD.parent(br);
 	}
-	if(HLD.toSeq(a)>HLD.toSeq(b)) swap(a,b);
+	HLD.normalizePair(a,b);
 	val=max(val,seg.prod(HLD.toSeq(a),HLD.toSeq(b)+1));
 	ans.emplace_back(val);
 	}
@@ -112,15 +112,65 @@ while(Q--){
 		u--,v--;
 		long res{};
 		while(!HLD.same(u,v)){
-			if(HLD.toSeq(u)>HLD.toSeq(v)) swap(u,v);
+			HLD.normalizePair(u,v);
 			const int r=HLD.heavyR(v);
 			res+=seg.prod(HLD.toSeq(r),HLD.toSeq(v)+1);
 			v=HLD.parent(r);
 		}
-		if(HLD.toSeq(u)>HLD.toSeq(v)) swap(u,v);
+		HLD.normalizePair(u,v);
 		res+=seg.prod(HLD.toSeq(u)+1,HLD.toSeq(v)+1); // LCAの重みは含めない
 		cout<<res<<"\n";
 	}
+}
+```
+
+#### 区間加算+区間総和クエリ
+https://yukicoder.me/submissions/1168206
+```cpp
+int main(){
+    cin.tie(nullptr)->ios::sync_with_stdio(false);
+    int N;
+    cin>>N;
+    vector G(N,vector<int>());
+    for(int i=0;i<N-1;i++){
+        int u,v;
+        cin>>u>>v;
+        u--,v--;
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+    }
+    HeavyLightDecomposition HLD(G);
+    struct node1{
+        long val,len;
+    };
+    auto op1=[](node1 a,node1 b){ return node1(a.val+b.val,a.len+b.len); };
+    auto e1=[]{ return node1(0l,0l); };
+    auto mapping1=[](long f,node1 x){ return node1(x.val+x.len*f,x.len); };
+    auto composition1=[](long f,long g){ return f+g; };
+    auto id1=[]{ return 0l; };
+    vector<node1> ini1(N,node1(0,1));
+    atcoder::lazy_segtree<node1,op1,e1,long,mapping1,composition1,id1> seg(ini1);
+    int Q;
+    cin>>Q;
+    while(Q--){
+        int a,b;
+        cin>>a>>b;
+        a--,b--;
+        while(!HLD.same(a,b)){
+            HLD.normalizePair(a,b);
+            const int r=HLD.heavyR(b);
+            seg.apply(HLD.toSeq(r),HLD.toSeq(b)+1,1);
+            b=HLD.parent(r);
+        }
+        HLD.normalizePair(a,b);
+        seg.apply(HLD.toSeq(a),HLD.toSeq(b)+1,1);
+    }
+    long ans{};
+    for(int i=0;i<N;i++){
+        const long val=seg.get(i).val;
+        ans+=val*(val+1)/2;
+    }
+    cout<<ans<<"\n";
 }
 ```
 
